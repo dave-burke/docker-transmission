@@ -9,7 +9,7 @@
     "watch-dir-enabled": true,
     "rename-partial-files": true,
     "start-added-torrents": true,
-    "trash-original-torrent-files: false,
+    "trash-original-torrent-files": false,
     "download-queue-enabled": true,
     "download-queue-size": 2,
     "queue-stalled-enabled": true,
