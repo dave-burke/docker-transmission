@@ -24,5 +24,5 @@ EXPOSE 51413
 
 USER debian-transmission
 
-ENTRYPOINT ["/usr/bin/transmission-daemon", "-f"]
-# http://stackoverflow.com/a/29799703
+CMD ["/usr/bin/transmission-daemon", "-f"]
+
