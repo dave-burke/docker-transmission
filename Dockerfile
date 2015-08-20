@@ -4,9 +4,13 @@ MAINTAINER Dave Burke <thoughtcriminall@gmail.com>
 RUN apt-get -q update
 RUN apt-get -qy --force-yes dist-upgrade
 
-# This GID matches the ID of the group on the host system
-# that owns the torrent dir.
-RUN groupadd -g 1001 debian-transmission
+# These commands should be run on the host as well,
+# The uid and gid must be the same, but the names 
+# can be different and the user need not have a 
+# home directory.
+RUN groupadd -g 51413 debian-transmission
+RUN useradd -u 51413 -g 51413 -d /var/lib/transmission-daemon debian-transmission
+
 RUN apt-get install -qy --force-yes transmission-daemon
 
 COPY settings.json /etc/transmission-daemon/settings.json
