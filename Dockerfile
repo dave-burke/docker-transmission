@@ -28,5 +28,5 @@ EXPOSE 51413
 
 USER debian-transmission
 
-CMD ["/usr/bin/transmission-daemon", "-f"]
+CMD ["/usr/bin/transmission-daemon", "-f", "--config-dir", "/etc/transmission-daemon/"]
 
