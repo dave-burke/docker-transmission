@@ -33,10 +33,7 @@
     "pex-enabled": 1,
     "prefetch-enabled": true,
     "utp-enabled": true,
-    "rpc-authentication-required": 1,
-    "rpc-password": "transmission",
+    "rpc-authentication-required": false,
     "rpc-port": 9091,
-    "rpc-username": "transmission",
-    "rpc-whitelist": "127.0.0.1,192.168.2.*",
-    "rpc-whitelist-enabled": true
+    "rpc-whitelist-enabled": false
 }
