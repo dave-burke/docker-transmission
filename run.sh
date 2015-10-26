@@ -1,4 +1,17 @@
 #!/bin/bash
 
-docker run --name torrent -d -v /mnt/media/torrent:/var/lib/transmission-daemon -p 9091:9091 -p 51413:51413 torrent
+name="torrent"
+cid="$(docker ps -q ${name})"
+if [ -n "${cid}" ]; then
+	echo "Stopping container..."
+	docker stop "${name}" > /dev/null
+fi
+cid="$(docker ps -a -q ${name})"
+if [ -n "${cid}" ]; then
+	echo "Removing container..."
+	docker rm "${name}" > /dev/null
+fi
+
+echo "Running container..."
+docker run --name ${name} --detach --restart=always --volume /mnt/media/torrent:/var/lib/transmission-daemon --publish 9091:9091 --publish 51413:51413 torrent
 
