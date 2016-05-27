@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker build -t torrent $(dirname $0)
+docker build --rm=true -t torrent $@ $(dirname $0)
+
