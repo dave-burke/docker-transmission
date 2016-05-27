@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM ubuntu:16.04
 MAINTAINER Dave Burke <thoughtcriminall@gmail.com>
 
 RUN apt-get -q update
