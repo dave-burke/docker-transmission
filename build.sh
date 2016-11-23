@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build --rm=true -t torrent $@ $(dirname $0)
+docker build --pull -t torrent $@ $(dirname $0)
 
