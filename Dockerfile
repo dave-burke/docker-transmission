@@ -1,17 +1,12 @@
 FROM ubuntu:16.04
-MAINTAINER Dave Burke <thoughtcriminall@gmail.com>
+MAINTAINER Dave Burke "dburke84@gmail.com"
 
-RUN apt-get -q update
-RUN apt-get -qy --force-yes dist-upgrade
+ENV uid=1000
+ENV gid=1000
+RUN groupadd -g $gid debian-transmission
+RUN useradd -u $uid -g $uid -d /var/lib/transmission-daemon debian-transmission
 
-# These commands should be run on the host as well,
-# The uid and gid must be the same, but the names 
-# can be different and the user need not have a 
-# home directory.
-RUN groupadd -g 51413 debian-transmission
-RUN useradd -u 51413 -g 51413 -d /var/lib/transmission-daemon debian-transmission
-
-RUN apt-get install -qy --force-yes transmission-daemon
+RUN apt-get --quiet update && apt-get install --quiet --assume-yes --allow-downgrades --allow-remove-essential --allow-change-held-packages transmission-daemon
 
 COPY settings.json /etc/transmission-daemon/settings.json
 RUN chown debian-transmission:debian-transmission /etc/transmission-daemon/settings.json
@@ -20,7 +15,7 @@ RUN chown debian-transmission:debian-transmission /etc/transmission-daemon/setti
 RUN chown -R debian-transmission:debian-transmission /var/lib/transmission-daemon
 VOLUME /var/lib/transmission-daemon
 
-#Web console
+# Web console
 EXPOSE 9091
 
 # Bittorrent
