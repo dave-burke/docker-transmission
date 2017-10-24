@@ -13,5 +13,11 @@ if [ -n "${cid}" ]; then
 fi
 
 echo "Running container..."
-docker run --name ${name} --detach --restart=always --volume /mnt/storage/docker/torrent:/var/lib/transmission-daemon --publish 9091:9091 --publish 51413:51413 torrent
+docker run --name ${name} --detach --restart=always \
+	--volume /mnt/storage/docker/torrent:/var/lib/transmission-daemon \
+	--env "VIRTUAL_HOST=torrent.servy.brk.one" \
+	--env "VIRTUAL_PORT=9091" \
+	--publish 9091:9091 \
+	--publish 51413:51413 \
+	torrent
 
